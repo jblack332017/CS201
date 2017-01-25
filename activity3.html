@@ -286,8 +286,13 @@
 			for (var i=0; i<cities.length;i++)
 			{
 				cities[i].className="notMatch";
-				if (cities[i].textContent.startsWith(text.value)&&text.length>0){
+				var citiesLower = cities[i].textContent.toLowerCase();
+				var textLower = text.value.toLowerCase();
+				if (citiesLower.startsWith(textLower)){
+					if (text.value.length>0)
+					{
 					cities[i].className="match";
+				}
 				}
 			}
 			
