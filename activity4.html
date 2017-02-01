@@ -28,6 +28,8 @@ $.getJSON(url,function(data) {
 
 $("#weatherButton").click(function(e){
   var value = $("#cityField").val();
+   value.charAt(0).toUpperCase() + value.slice(1);
+
   console.log(value);
   e.preventDefault();
   $("#displayCity").text(value);
