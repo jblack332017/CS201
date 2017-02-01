@@ -44,6 +44,10 @@ $( "#cityField" ).keyup(function() {
 });
 
 $("#weatherButton").click(function(e){
+	var value = $("#cityField").val();
+  console.log(value);
+  e.preventDefault();
+  $("#displayCity").text(value);
   var myurl= "https://api.wunderground.com/api/APIKEY/geolookup/conditions/q/Utah/";
   myurl += value;
   myurl += ".json";
