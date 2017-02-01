@@ -24,7 +24,6 @@ $( "#cityField" ).keyup(function() {
   })
   .complete(function() { console.log("complete"); });
 });
-});
 
 $("#weatherButton").click(function(e){
   var value = $("#cityfield").val();
@@ -32,6 +31,12 @@ $("#weatherButton").click(function(e){
   e.preventDefault();
   $("#displayCity").text(value);
 });
+
+
+
+});
+
+
 </script>
 
 
