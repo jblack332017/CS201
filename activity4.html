@@ -7,6 +7,7 @@
 $(document).ready(function() {
 $( "#cityField" ).keyup(function() {
 	var value = $("#cityField").val();
+	var value = value.toLowerCase();
    value= value.charAt(0).toUpperCase() + value.slice(1);
   var url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="+value;
 $.getJSON(url,function(data) {
@@ -30,6 +31,7 @@ $.getJSON(url,function(data) {
 
 $("#weatherButton").click(function(e){
   var value = $("#cityField").val();
+  value = value.toLowerCase();
    value= value.charAt(0).toUpperCase() + value.slice(1);
 
   console.log(value);
