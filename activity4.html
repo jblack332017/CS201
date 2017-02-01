@@ -48,7 +48,7 @@ $("#weatherButton").click(function(e){
   console.log(value);
   e.preventDefault();
   $("#displayCity").text(value);
-  var myurl= "https://api.wunderground.com/api/APIKEY/geolookup/conditions/q/UT/";
+  var myurl= "https://api.wunderground.com/api/APIKEY/geolookup/conditions/q/Utah/";
   myurl += value;
   myurl += ".json";
   console.log(myurl);
