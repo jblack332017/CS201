@@ -25,6 +25,13 @@ $( "#cityField" ).keyup(function() {
   .complete(function() { console.log("complete"); });
 });
 });
+
+$("#weatherButton").click(function(e){
+  var value = $("#cityfield").val();
+  console.log(value);
+  e.preventDefault();
+  $("#displayCity").text(value);
+});
 </script>
 
 
