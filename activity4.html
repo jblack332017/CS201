@@ -4,7 +4,27 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script>
-$(document).ready(function(){$("#cityField").keyup(function(){var url="http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="+$("#cityField").val();$.getJSON(url,function(data){var everything;everything="<ul>";$.each(data,function(i,item){everything+="<li> "+data[i].city;});everything+="</ul>";$("#txtHint").html(everything);}).done(function(){console.log('getJSON request succeeded!');}).fail(function(jqXHR,textStatus,errorThrown){console.log('getJSON request failed! '+textStatus);console.log("incoming "+jqXHR.responseText);}).always(function(){console.log('getJSON request ended!');}).complete(function(){console.log("complete");});});});
+$(document).ready(function() {
+$( "#cityField" ).keyup(function() {
+  $.getJSON("http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=P",function(data) {
+    var everything;
+    everything = "<ul>";
+    $.each(data, function(i,item) {
+      everything += "<li> "+data[i].city;
+    });
+    everything += "</ul>";
+    $("#txtHint").html(everything);
+  })
+  .done(function() { console.log('getJSON request succeeded!'); })
+  .fail(function(jqXHR, textStatus, errorThrown) { 
+    console.log('getJSON request failed! ' + textStatus); 
+    console.log("incoming "+jqXHR.responseText);
+  })
+  .always(function() { console.log('getJSON request ended!');
+  })
+  .complete(function() { console.log("complete"); });
+});
+});
 </script>
 
 
