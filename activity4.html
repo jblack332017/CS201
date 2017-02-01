@@ -63,9 +63,14 @@ $("#searchButton").click(function(e){
   $.ajax({
     url : myurl,
     dataType : "json",
-    success : function(data) {
-    	    console.log(data);
-
+    success : function(parsed_json) {
+    	everything = "<ul>";
+   	$.each(parsed_json['items'], function(i,item) {
+      everything += "<li> "+parsed_json['items'][i]['title'];
+      everything +="</li>";
+    });
+    everything +="</ul>";
+    $("#searchResults").html(everything);
       // var location = parsed_json['location']['city'];
       // var temp_string = parsed_json['current_observation']['temperature_string'];
       // var current_weather = parsed_json['current_observation']['weather'];
