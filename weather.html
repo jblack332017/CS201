@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<title>Josh's Weather</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif;
+        text-align: center;}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('home.jpeg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+$( "#cityField" ).keyup(function() {
+  var value = $("#cityField").val();
+  var value = value.toLowerCase();
+   value= value.charAt(0).toUpperCase() + value.slice(1);
+  var url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="+value;
+$.getJSON(url,function(data) {
+    var everything;
+    everything = "<ul>";
+    $.each(data, function(i,item) {
+      everything += "<li> "+data[i].city;
+    });
+    everything += "</ul>";
+    $("#txtHint").html(everything);
+  })
+  .done(function() { console.log('getJSON request succeeded!'); })
+  .fail(function(jqXHR, textStatus, errorThrown) { 
+    console.log('getJSON request failed! ' + textStatus); 
+    console.log("incoming "+jqXHR.responseText);
+  })
+  .always(function() { console.log('getJSON request ended!');
+  })
+  .complete(function() { console.log("complete"); });
+});
+
+$("#weatherButton").click(function(e){
+  var value = $("#cityField").val();
+  value = value.toLowerCase();
+   value= value.charAt(0).toUpperCase() + value.slice(1);
+
+  console.log(value);
+  e.preventDefault();
+  $("#displayCity").text(value);
+  var myurl= "https://api.wunderground.com/api/da135afa475b7bfb/geolookup/conditions/q/UT/";
+  myurl += value;
+  myurl += ".json";
+  console.log(myurl);
+  $.ajax({
+    url : myurl,
+    dataType : "json",
+    success : function(parsed_json) {
+      var location = parsed_json['location']['city'];
+      var temp_string = parsed_json['current_observation']['temperature_string'];
+      var current_weather = parsed_json['current_observation']['weather'];
+      everything = "<ul>";
+      everything += "<li>Location: "+location;
+      everything += "<li>Temperature: "+temp_string;
+      everything += "<li>Weather: "+current_weather;
+      everything += "</ul>";
+      $("#weather").html(everything);
+    }
+  });
+});
+
+
+$("#searchButton").click(function(e){
+    var value = $("#searchStack").val();
+  e.preventDefault();
+  var myurl= "https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=";
+  myurl += value;
+  myurl += "&site=stackoverflow";
+  console.log(myurl);
+  $.ajax({
+    url : myurl,
+    dataType : "json",
+    success : function(parsed_json) {
+      everything = "<ul>";
+    $.each(parsed_json['items'], function(i,item) {
+      everything += "<li> <a href='"+parsed_json['items'][i]['link']+"'>"+parsed_json['items'][i]['title']+"</a>";
+      everything +="</li>";
+    });
+    everything +="</ul>";
+    $("#searchResults").html(everything);
+      // var location = parsed_json['location']['city'];
+      // var temp_string = parsed_json['current_observation']['temperature_string'];
+      // var current_weather = parsed_json['current_observation']['weather'];
+      // everything = "<ul>";
+      // everything += "<li>Location: "+location;
+      // everything += "<li>Temperature: "+temp_string;
+      // everything += "<li>Weather: "+current_weather;
+      // everything += "</ul>";
+      // $("#weather").html(everything);
+    }
+  });
+
+
+
+
+
+  
+
+});
+
+
+});
+</script>
+
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+    <img src="gun-blaster.png" alt="logo" style="width: 10%">
+  </div>
+  <div class="w3-display-middle">
+    <form>
+Enter A Utah City: <input type="text" id="cityField" value=""><br>
+Suggestion: <span id="txtHint">Empty</span><br>
+<input id="weatherButton" type="submit" value="Submit">
+</form>
+<p>City: <span id="displayCity">No City</span>
+</p>
+<p>Current Weather</p>
+<div id="weather">No weather</div>
+<br><hr class="w3-border-grey" style="margin:auto;width:40%">
+<br>
+Search Stack: <input type="text" id="searchStack" value=""><br>
+<input id="searchButton" type="submit" value="Submit">
+<div id="searchResults">No results</div>
+  </div>
+  <div class="w3-display-bottomleft w3-padding-large">
+  </div>
+</div>
+
+</body>
+</html>
