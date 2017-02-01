@@ -29,8 +29,21 @@ $("#weatherButton").click(function(e){
   var value = $("#cityField").val();
   console.log(value);
   e.preventDefault();
-  alert(value);
   $("#displayCity").text(value);
+  
+    var myurl= "https://api.wunderground.com/api/APIKEY/geolookup/conditions/q/UT/";
+  myurl += value;
+  myurl += ".json";
+  console.log(myurl);
+  $.ajax({
+    url : myurl,
+    dataType : "json",
+    success : function(data) {
+        console.log(data);
+    }
+
+
+
 });
 
 
