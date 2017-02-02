@@ -73,11 +73,11 @@ $("#weatherButton").click(function(e){
       }
       else if (temp>32 && temp<=70)
       {
-      	alert("normal");
+      	$('.bgimg').css('background-image', 'url('+'normal.jpg'+')');
       }
       else if(temp>70)
       {
-      	alert("hot");
+      	$('.bgimg').css('background-image', 'url('+'hot.jpg'+')');
       }
       var current_weather = parsed_json['current_observation']['weather'];
       everything = "<ul>";
