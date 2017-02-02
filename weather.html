@@ -66,7 +66,18 @@ $("#weatherButton").click(function(e){
       var location = parsed_json['location']['city'];
       var temp_string = parsed_json['current_observation']['temperature_string'];
       var temp = temp_string.split(' ')[0];
-      alert(temp);
+      if (temp<=32)
+      {
+      	alert("freezing");
+      }
+      else if (temp>32 && temp<=70)
+      {
+      	alert("normal");
+      }
+      else if(temp>70)
+      {
+      	alert("hot");
+      }
       var current_weather = parsed_json['current_observation']['weather'];
       everything = "<ul>";
       everything += "<li>Location: "+location;
