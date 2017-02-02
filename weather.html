@@ -65,6 +65,8 @@ $("#weatherButton").click(function(e){
     success : function(parsed_json) {
       var location = parsed_json['location']['city'];
       var temp_string = parsed_json['current_observation']['temperature_string'];
+      var temp = temp_string.split(' ')[0];
+      alert(temp);
       var current_weather = parsed_json['current_observation']['weather'];
       everything = "<ul>";
       everything += "<li>Location: "+location;
