@@ -68,7 +68,8 @@ $("#weatherButton").click(function(e){
       var temp = temp_string.split(' ')[0];
       if (temp<=32)
       {
-      	alert("freezing");
+      	$('#bgimg').css('background-image', 'url('+'freezing.jpg'+')');
+
       }
       else if (temp>32 && temp<=70)
       {
