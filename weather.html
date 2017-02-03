@@ -69,12 +69,12 @@ $("#weatherButton").click(function(e){
       var location = parsed_json['location']['city'];
       var temp_string = parsed_json['current_observation']['temperature_string'];
       var temp = temp_string.split(' ')[0];
-      if (temp<=32)
+      if (temp<=37)
       {
       	$('.bgimg').css('background-image', 'url('+'freezing.jpg'+')');
 
       }
-      else if (temp>32 && temp<=55)
+      else if (temp>37 && temp<=55)
       {
       	$('.bgimg').css('background-image', 'url('+'normal.jpg'+')');
       }
