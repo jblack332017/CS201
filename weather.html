@@ -18,7 +18,7 @@ body, html {height: 100%}
 }
 .w3-display-middle{
   text-align: center;
-  height: 100%;
+  height: 100%
 }
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -82,11 +82,11 @@ $("#weatherButton").click(function(e){
       	$('.bgimg').css('background-image', 'url('+'hot.jpg'+')');
       }
       var current_weather = parsed_json['current_observation']['weather'];
-      everything = "<ol>";
+      everything = "<ul>";
       everything += "<li>Location: "+location;
       everything += "<li>Temperature: "+temp_string;
       everything += "<li>Weather: "+current_weather;
-      everything += "</ol>";
+      everything += "</ul>";
       $("#weather").html(everything);
     }
   });
@@ -104,12 +104,12 @@ $("#searchButton").click(function(e){
     url : myurl,
     dataType : "json",
     success : function(parsed_json) {
-      everything = "<ol>";
+      everything = "<ul>";
     $.each(parsed_json['items'], function(i,item) {
       everything += "<li> <a href='"+parsed_json['items'][i]['link']+"'>"+parsed_json['items'][i]['title']+"</a>";
       everything +="</li>";
     });
-    everything +="</ol>";
+    everything +="</ul>";
     $("#searchResults").html(everything);
       // var location = parsed_json['location']['city'];
       // var temp_string = parsed_json['current_observation']['temperature_string'];
