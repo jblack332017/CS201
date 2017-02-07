@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('forestbridge.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.w3-display-middle{
+  text-align: center;
+  padding-top: 40px;
+  color: white;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-middle">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+<h1>My Family History List</h1>
+
+<form ng-submit="todoAdd()">
+    <input type="text" ng-model="name" size="30" placeholder="Name">
+        <input type="text" ng-model="father" size="30" placeholder="Father">
+    <input type="text" ng-model="mother" size="30" placeholder="Mother">
+
+    <input type="submit" value="Add New">
+</form>
+
+<br>
+
+<div ng-repeat="x in todoList">
+    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.name"></span>, <span ng-bind="x.father"></span>, <span ng-bind="x.mother"></span>
+</div>
+
+<p><button ng-click="remove()">Remove marked</button></p>
+  </div>
+  
+  </div>
+</div>
+
+<script>
+var app = angular.module('myApp', []); 
+app.controller('todoCtrl', function($scope) {
+    $scope.todoList = [];
+
+    $scope.todoAdd = function() {
+        $scope.todoList.push({name:$scope.name,father:$scope.father,mother:$scope.mother, done:false});
+        $scope.father = "";
+        $scope.name = "";
+        $scope.mother = "";
+
+    };
+
+    $scope.remove = function() {
+        var oldList = $scope.todoList;
+        $scope.todoList = [];
+        angular.forEach(oldList, function(x) {
+            if (!x.done) $scope.todoList.push(x);
+        });
+    };
+});
+</script>
+
+</body>
+</html>
